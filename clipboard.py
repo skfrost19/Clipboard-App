@@ -97,7 +97,10 @@ class ClipboardApp(QMainWindow):
 
     def on_item_change(self, item):
         # update the clipboard history
-        self.clipboard_data[item.row()] = item.text()
+        try:
+            self.clipboard_data[item.row()] = item.text()
+        except:
+            pass
 
     def clear_clipboard(self):
         self.clipboard.clear(mode=self.clipboard.Clipboard)
