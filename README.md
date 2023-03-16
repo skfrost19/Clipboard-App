@@ -3,7 +3,7 @@
 * The app is designed to run in the background and can be accessed through the system tray icon.
 
 ## Requirements
-* Python 3.6 or higher
+* Python 3.7 or higher
 * PyQt5
 
 ## Installation
