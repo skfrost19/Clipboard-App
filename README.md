@@ -8,8 +8,14 @@
 
 ## Installation
 * Clone the repository: `git clone https://github.com/skfrost19/Clipboard-App.git`
-* Install the required dependencies: pip install -r requirements.txt
-* Run the application: `python main.py` on <b>windows</b> or `python3 main.py` on <b>linux</b>
+* Install the required dependencies: <ul>
+                                    <li>For Windows:  `pip install -r requirements.txt`</li>
+                                    <li>For linux:    `pip3 install -r requirements.txt`</li>
+                                    </ul>
+* Run the application: <ul>
+                      <li>Windows: `python clipboard.py`</li>
+                      <li>Linux: `python3 clipboard.py`</li>
+                      </ul>
 
 ## Usage
 Once the application is running, it will automatically keep track of the user's clipboard history. To access the application, click on the system tray icon. The clipboard history will be displayed in a table with two columns: "Copied Elements" and "Options". The "Copied Elements" column displays the text that has been copied to the clipboard, and the "Options" column provides options for the user to interact with the clipboard history.
