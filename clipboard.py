@@ -1,6 +1,6 @@
 import sys
 import pickle
-from PyQt5.QtWidgets import QApplication, QMainWindow, QTableWidget, QTableWidgetItem, QShortcut, QWidget, QMenu, QAction, QSystemTrayIcon, QPushButton, QHBoxLayout, QHeaderView
+from PyQt5.QtWidgets import QApplication, QMainWindow, QTableWidget, QTableWidgetItem, QShortcut, QWidget, QMenu, QAction, QSystemTrayIcon, QPushButton, QHBoxLayout, QHeaderView, QFrame
 from PyQt5.QtGui import QKeySequence, QIcon
 from PyQt5.QtCore import Qt
 
@@ -9,9 +9,40 @@ class ClipboardApp(QMainWindow):
     def __init__(self):
         super().__init__()
 
-        # remove minimise icon from the window
-        self.setWindowFlags(Qt.WindowCloseButtonHint)
+        # style the application
+        self.setStyleSheet('''
+            QMainWindow {
+                background-color: "#3d3d3d";
+                color: #f0f0f0;
+            }
+            QTableWidget {
+                background-color: #3d3d3d;
+                color: #f0f0f0;
+                border: 1px solid #2d2d2d;
+            }
+            QTableWidget::item {
+                border: 1px solid #2d2d2d;
+            }
+            QTableWidget::item:selected {
+                background-color: #3d3d3d;
+            }
+            QHeaderView::section {
+                background-color: #3d3d3d;
+                color: #f0f0f0;
+                border: 1px solid #2d2d2d;
+            }
+            QPushButton:hover {
+                background-color: #5d5d5d;
 
+            }
+            QPushButton:pressed {
+                background-color: #5d5d5d;
+            }
+
+        ''')
+
+        # remove minimise icon from the window
+        self.setWindowFlags(Qt.WindowCloseButtonHint)    
 
         # create  a system key binding that whenever shift+q is pressed the gui will be visible on the screen
         self.shortcut = QShortcut(QKeySequence('Ctrl+Q'), self)
@@ -62,6 +93,14 @@ class ClipboardApp(QMainWindow):
 
         # override closeEvent to minimize to system tray and if the user closes the window from the system tray, exit the application
         self.closeEvent = self.on_close
+
+    def clear_clipboard(self):
+        self.clipboard.clear(mode=self.clipboard.Clipboard)
+        # clear the clipboard history
+        self.clipboard_data = []
+        # clear the table
+        self.table.setRowCount(0)
+
         
     def show_normal(self):
         self.show()
@@ -111,8 +150,18 @@ class ClipboardApp(QMainWindow):
         # add the options to the table
         delete_button = QPushButton('Delete')
         delete_button.clicked.connect(self.delete_row)
+        delete_button.setFixedHeight(20)
+        # font color to red
+        delete_button.setStyleSheet('color: red')
+        # change y padding to 0
+        delete_button.setContentsMargins(0, 0, 0, 0)
         copy_button = QPushButton('Copy')
         copy_button.clicked.connect(self.copy_row)
+        copy_button.setFixedHeight(20)
+        # font color to green
+        copy_button.setStyleSheet('color: green')
+        # change y padding to 0
+        copy_button.setContentsMargins(0, 0, 0, 0)
         option_widget = QWidget()
         layout = QHBoxLayout(option_widget)
         layout.addWidget(delete_button)
