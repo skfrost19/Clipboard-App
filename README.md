@@ -2,6 +2,10 @@
 * This is a GUI application built using PyQt5 which keeps track of the user's clipboard history. 
 * The app is designed to run in the background and can be accessed through the system tray icon.
 
+## Requirements
+* Python 3.6 or higher
+* PyQt5
+
 ## Installation
 * Clone the repository: `git clone https://github.com/skfrost19/Clipboard-App.git`
 * Install the required dependencies: pip install -r requirements.txt
