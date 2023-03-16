@@ -3,7 +3,7 @@
 * The app is designed to run in the background and can be accessed through the system tray icon.
 
 ## Installation
-* Clone the repository: git clone https://github.com/skfrost19/clipboard-app.git
+* Clone the repository: `git clone https://github.com/skfrost19/Clipboard-App.git`
 * Install the required dependencies: pip install -r requirements.txt
 * Run the application: python main.py on windows or python3 main.py on linux
 
