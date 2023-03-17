@@ -146,10 +146,11 @@ class ClipboardApp(QMainWindow):
     def clear_clipboard(self):
         self.clipboard.clear(mode=self.clipboard.Clipboard)
         # clear the clipboard history
-        self.clipboard_data = []
+        self.clipboard_data.clear()
         # clear the table
-        for itr in range(self.table.rowCount()):
-            self.table.removeRow(0)
+        self.table.clearContents()
+        self.table.setRowCount(0)
+
 
     def show_normal(self):
         self.show()
@@ -193,33 +194,36 @@ class ClipboardApp(QMainWindow):
         self.clipboard_data.insert(0, text)
 
     def add_row(self, text):
-        self.table.insertRow(0)
-        # set as not editable
-        self.table.setEditTriggers(QAbstractItemView.NoEditTriggers)
-        # set the text
-        self.table.setItem(0, 0, QTableWidgetItem(text))
+        if text != "":
+            self.table.insertRow(0)
+            # set as not editable
+            self.table.setEditTriggers(QAbstractItemView.NoEditTriggers)
+            # set the text
+            self.table.setItem(0, 0, QTableWidgetItem(text))
 
-        # add the options to the table
-        delete_button = QPushButton("Delete")
-        delete_button.clicked.connect(self.delete_row)
-        delete_button.setFixedHeight(20)
-        # font color to red
-        delete_button.setStyleSheet("color: red")
-        # change y padding to 0
-        delete_button.setContentsMargins(0, 0, 0, 0)
-        copy_button = QPushButton("Copy")
-        copy_button.clicked.connect(self.copy_row)
-        copy_button.setFixedHeight(20)
-        # font color to green
-        copy_button.setStyleSheet("color: green")
-        # change y padding to 0
-        copy_button.setContentsMargins(0, 0, 0, 0)
-        option_widget = QWidget()
-        layout = QHBoxLayout(option_widget)
-        layout.addWidget(delete_button)
-        layout.addWidget(copy_button)
-        layout.setAlignment(Qt.AlignCenter)
-        self.table.setCellWidget(0, 1, option_widget)
+            # add the options to the table
+            delete_button = QPushButton("Delete")
+            delete_button.clicked.connect(self.delete_row)
+            delete_button.setFixedHeight(20)
+            # font color to red
+            delete_button.setStyleSheet("color: red")
+            # change y padding to 0
+            delete_button.setContentsMargins(0, 0, 0, 0)
+            copy_button = QPushButton("Copy")
+            copy_button.clicked.connect(self.copy_row)
+            copy_button.setFixedHeight(20)
+            # font color to green
+            copy_button.setStyleSheet("color: green")
+            # change y padding to 0
+            copy_button.setContentsMargins(0, 0, 0, 0)
+            option_widget = QWidget()
+            layout = QHBoxLayout(option_widget)
+            layout.addWidget(delete_button)
+            layout.addWidget(copy_button)
+            layout.setAlignment(Qt.AlignCenter)
+            self.table.setCellWidget(0, 1, option_widget)
+        else:
+            pass
 
     def copy_row(self):
         button = self.sender()
