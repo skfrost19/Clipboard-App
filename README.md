@@ -11,14 +11,14 @@
 ## Installation
 
 - Clone the repository: `git clone https://github.com/skfrost19/Clipboard-App.git`
-- Install the required dependencies: <ul>
-  <li>For Windows: `pip install -r requirements.txt`</li>
-  <li>For linux: `pip3 install -r requirements.txt`</li>
-  </ul>
-- Run the application: <ul>
-  <li>Windows: `python clipboard.py`</li>
-  <li>Linux: `python3 clipboard.py`</li>
-  </ul>
+- Install the required dependencies:
+
+  - For Windows: `pip install -r requirements.txt`
+  - For linux: `pip3 install -r requirements.txt`
+
+- Run the application:
+  - Windows: `python clipboard.py`
+  - Linux: `python3 clipboard.py`
 
 ## Usage
 
