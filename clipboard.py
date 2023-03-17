@@ -117,6 +117,16 @@ class ClipboardApp(QMainWindow):
         # override closeEvent to minimize to system tray and if the user closes the window from the system tray, exit the application
         self.closeEvent = self.on_close
 
+        # add tooltip on mouse hover with cells content
+        self.set_tooltip()  # set tooltip for the cells
+
+
+    def set_tooltip(self):
+        for row in range(self.table.rowCount()):    # iterate through the rows
+            item = self.table.item(row, 0)        # get the item in the first column
+            item.setToolTip(item.text()[:100])  # set the tooltip to the first 100 characters of the text
+
+
 
     def add_clear_button(self):
         # add a button to clear the clipboard at the bottom of the window
