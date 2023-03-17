@@ -68,6 +68,8 @@ class ClipboardApp(QMainWindow):
         self.setWindowTitle("Clipboard App")
         self.setWindowIcon(QIcon("icon.png"))
         self.setGeometry(100, 100, 600, 400)
+        self.setMinimumSize(600, 400)
+        self.setMaximumSize(600, 400)
 
         # create the table to display copied elements
         self.table = QTableWidget(self)
@@ -79,7 +81,7 @@ class ClipboardApp(QMainWindow):
         )
         self.table.horizontalHeader().setSectionResizeMode(0, QHeaderView.Stretch)
         self.setCentralWidget(self.table)
-
+        self.add_clear_button()
         # connect to the system clipboard and add a listener for clipboard changes
         self.clipboard = QApplication.clipboard()
         self.clipboard.dataChanged.connect(self.on_clipboard_change)
@@ -115,12 +117,39 @@ class ClipboardApp(QMainWindow):
         # override closeEvent to minimize to system tray and if the user closes the window from the system tray, exit the application
         self.closeEvent = self.on_close
 
+
+    def add_clear_button(self):
+        # add a button to clear the clipboard at the bottom of the window
+        self.clear_button = QPushButton("Clear Clipboard", self)
+        self.clear_button.setIcon(QIcon("clear.png"))
+        self.clear_button.clicked.connect(self.clear_clipboard)
+        # flex the button to the bottom of the window and center it
+        # resize according to the window size
+        self.clear_button.resize(600, 30)
+        self.clear_button.setStyleSheet(
+            """
+            QPushButton {
+                background-color: #3d3d3d;  
+                color: red;
+                border: 1px solid #2d2d2d;
+            }
+            QPushButton:hover {
+                background-color: #5d5d5d;
+            }
+            QPushButton:pressed {
+                background-color: #5d5d5d;
+            }
+        """
+        )
+        self.clear_button.move(0, 370)
+
     def clear_clipboard(self):
         self.clipboard.clear(mode=self.clipboard.Clipboard)
         # clear the clipboard history
         self.clipboard_data = []
         # clear the table
-        self.table.setRowCount(0)
+        for itr in range(self.table.rowCount()):
+            self.table.removeRow(0)
 
     def show_normal(self):
         self.show()
