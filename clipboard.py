@@ -55,7 +55,6 @@ class ClipboardApp(QMainWindow):
 
         # create the table to display copied elements
         self.table = QTableWidget(self)
-        self.table.itemChanged.connect(self.on_item_change)
         self.table.setColumnCount(2)
         self.table.setHorizontalHeaderLabels(['Copied Elements', 'Options'])
         # resize permenently the options column in ratio 90:10
@@ -94,13 +93,6 @@ class ClipboardApp(QMainWindow):
 
         # override closeEvent to minimize to system tray and if the user closes the window from the system tray, exit the application
         self.closeEvent = self.on_close
-
-    def on_item_change(self, item):
-        # update the clipboard history
-        try:
-            self.clipboard_data[item.row()] = item.text()
-        except:
-            pass
 
     def clear_clipboard(self):
         self.clipboard.clear(mode=self.clipboard.Clipboard)
@@ -154,7 +146,7 @@ class ClipboardApp(QMainWindow):
     def add_row(self, text):
         self.table.insertRow(0)
         # set as not editable
-        # self.table.setEditTriggers(QAbstractItemView.NoEditTriggers)
+        self.table.setEditTriggers(QAbstractItemView.NoEditTriggers)
         # set the text
         self.table.setItem(0, 0, QTableWidgetItem(text))
 
