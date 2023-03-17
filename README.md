@@ -32,7 +32,3 @@ Automatic clipboard tracking
 Display clipboard history in a table.
 Clear clipboard history
 Hide the application to the system tray on startup
-
-## Credits
-
-The application was developed by skfrost19.
