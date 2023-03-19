@@ -17,8 +17,18 @@
   - For linux: `pip3 install -r requirements.txt`
 
 - Run the application:
+
   - Windows: `python clipboard.py`
   - Linux: `python3 clipboard.py`
+
+- Debian package can also be retrieved from the [releases](https://github.com/skfrost19/Clipboard-App/releases/tag/v0.0.1deb) page.
+
+## Build
+
+- To build the application [.deb] for debian based systems, run the following command:
+
+  - clone the debian branch
+  - follow the [Instruction](https://github.com/skfrost19/Clipboard-App/blob/Debian/debian/install.md) in the debian folder.
 
 ## Usage
 
