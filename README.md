@@ -1,7 +1,7 @@
 # Clipboard App
 
 - This is a GUI application built using PyQt5 which keeps track of the user's clipboard history.
-- Build manily for linux users.
+- Build mainly for linux users.
 - The app is designed to run in the background and can be accessed through the system tray icon.
 
 ## Requirements
