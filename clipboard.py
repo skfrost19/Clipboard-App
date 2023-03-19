@@ -116,17 +116,14 @@ class ClipboardApp(QMainWindow):
 
         # override closeEvent to minimize to system tray and if the user closes the window from the system tray, exit the application
         self.closeEvent = self.on_close
-
-        # add tooltip on mouse hover with cells content
-        self.set_tooltip()  # set tooltip for the cells
-
+        self.set_tooltip()
 
     def set_tooltip(self):
-        for row in range(self.table.rowCount()):    # iterate through the rows
-            item = self.table.item(row, 0)        # get the item in the first column
-            item.setToolTip(item.text()[:100])  # set the tooltip to the first 100 characters of the text
-
-
+        for row in range(self.table.rowCount()):  # iterate through the rows
+            item = self.table.item(row, 0)  # get the item in the first column
+            item.setToolTip(
+                item.text()[:100]
+            )  # set the tooltip to the first 100 characters of the text
 
     def add_clear_button(self):
         # add a button to clear the clipboard at the bottom of the window
@@ -161,7 +158,6 @@ class ClipboardApp(QMainWindow):
         self.table.clearContents()
         self.table.setRowCount(0)
 
-
     def show_normal(self):
         self.show()
         self.activateWindow()
@@ -173,6 +169,7 @@ class ClipboardApp(QMainWindow):
                 self.clipboard_data = pickle.load(f)
             f.close()
         except:
+            print("No clipboard history found")
             self.clipboard_data = []
 
         # add the clipboard history to the table
@@ -183,25 +180,30 @@ class ClipboardApp(QMainWindow):
         if self.isVisible():
             self.hide()
             event.ignore()
-
         else:
-            # save the clipboard history
-            with open("clipboard_history.pkl", "wb") as f:
-                pickle.dump(self.clipboard_data, f)
-            f.close()
-            self.tray_icon.hide()
+            self.save_data()
             event.accept()
+
+    def save_data(self):
+        # save the clipboard history
+        with open("clipboard_history.pkl", "wb") as f:
+            pickle.dump(self.clipboard_data, f)
+        f.close()
 
     def on_clipboard_change(self):
         # get the current clipboard text
         text = self.clipboard.text()
 
         # check if the text is already in the table
-        for row in range(self.table.rowCount()):
-            if self.table.item(row, 0).text() == text:
-                return
-        self.add_row(text)
-        self.clipboard_data.insert(0, text)
+        if text in self.clipboard_data:
+            return
+        if text != "":
+            self.add_row(text)
+            self.clipboard_data.insert(0, text)
+            self.set_tooltip()
+            self.save_data()
+        else:
+            return
 
     def add_row(self, text):
         if text != "":
@@ -250,9 +252,14 @@ class ClipboardApp(QMainWindow):
             row = self.table.indexAt(button.parent().pos()).row()
             self.table.removeRow(row)
             self.clipboard_data.pop(row)
+            self.save_data()
 
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     window = ClipboardApp()
     sys.exit(app.exec_())
+
+
+# using pytinstller
+# pyinstaller --add-data "clear.png:." --add-data "icon.png:." --name "Clipboard App" clipboard.py
