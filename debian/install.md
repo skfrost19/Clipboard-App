@@ -1,5 +1,7 @@
 Steps to build a package :-
 
+- [optional] - Create a virtual environment
+
 Necessary library/tools :-
 
 - pip3 install -r requirements.txt
