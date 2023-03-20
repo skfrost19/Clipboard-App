@@ -28,7 +28,8 @@
 
 - To build the application [.deb] for debian based systems, run the following command:
 
-  - clone the debian branch
+  - clone the repo
+  - use debian folder only
   - follow the [Instruction](https://github.com/skfrost19/Clipboard-App/blob/Debian/debian/install.md) in the debian folder.
 
 ## Usage
