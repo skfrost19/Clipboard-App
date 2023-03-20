@@ -16,7 +16,7 @@ from PyQt5.QtWidgets import (
     QAbstractItemView,
     QDesktopWidget,
 )
-from PyQt5.QtGui import QKeySequence, QIcon
+from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import Qt
 
 
