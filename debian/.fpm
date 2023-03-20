@@ -1,0 +1,6 @@
+-C package
+-s dir
+-t deb
+-n "clipboard-manager"
+-v 0.0.1
+-p clipboard-manager.deb
