@@ -1,2 +1,11 @@
-clipboard_history.pkl
+build/
+dist/
+package/
+packenv/
 temp.py
+temp.txt
+install.sh
+uninstall.sh
+install.md
+package.sh
+clipboard_history.pkl
