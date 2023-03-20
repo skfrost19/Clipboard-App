@@ -30,20 +30,23 @@
 
   - clone the repo
   - use debian folder only
-  - follow the [Instruction](https://github.com/skfrost19/Clipboard-App/blob/Debian/debian/install.md) in the debian folder.
+  - follow the [Instruction](https://github.com/skfrost19/Clipboard-App/tree/master/debian/install.md) in the debian folder.
 
 ## Usage
 
-Once the application is running, it will automatically keep track of the user's clipboard history. To access the application, click on the system tray icon. The clipboard history will be displayed in a table with two columns: "Copied Elements" and "Options". The "Copied Elements" column displays the text that has been copied to the clipboard, and the "Options" column provides options for the user to interact with the clipboard history.
+- Once the application is running, it will automatically keep track of the user's clipboard history.
+- To access the application, click on the system tray icon.
+- The clipboard history will be displayed in a table with two columns: "Copied Elements" and "Options".
+- The "Copied Elements" column displays the text that has been copied to the clipboard, and the "Options" column provides options for the user to interact with the clipboard history.
 
 The user can clear the clipboard history by clicking the "Clear Clipboard" button at the bottom of the window. To exit the application, right-click on the system tray icon and select "Exit" from the context menu.
 
 ## Features
 
-Automatic clipboard tracking
-Display clipboard history in a table.
-Clear clipboard history
-Hide the application to the system tray on startup
+- Automatic clipboard tracking
+- Display clipboard history in a table.
+- Clear clipboard history
+- Hide the application to the system tray on startup
 
 ## License
 
