@@ -44,3 +44,7 @@ Automatic clipboard tracking
 Display clipboard history in a table.
 Clear clipboard history
 Hide the application to the system tray on startup
+
+## License
+
+This project is licensed under the [MIT](LICENSE.txt) License.
