@@ -14,6 +14,7 @@ from PyQt5.QtWidgets import (
     QHBoxLayout,
     QHeaderView,
     QAbstractItemView,
+    QDesktopWidget,
 )
 from PyQt5.QtGui import QKeySequence, QIcon
 from PyQt5.QtCore import Qt
@@ -60,14 +61,13 @@ class ClipboardApp(QMainWindow):
         # remove minimise icon from the window
         self.setWindowFlags(Qt.WindowCloseButtonHint)
 
-        # create  a system key binding that whenever shift+q is pressed the gui will be visible on the screen
-        self.shortcut = QShortcut(QKeySequence("Ctrl+Q"), self)
-        self.shortcut.activated.connect(self.show)
-
         # create the main window
         self.setWindowTitle("Clipboard App")
         self.setWindowIcon(QIcon("icon.png"))
-        self.setGeometry(100, 100, 600, 400)
+
+        #set at right upper corner
+        desktop = QDesktopWidget().screenGeometry()
+        self.setGeometry(desktop.width() - 600, 0, 600, 400)
         self.setMinimumSize(600, 400)
         self.setMaximumSize(600, 400)
 

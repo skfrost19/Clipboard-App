@@ -8,3 +8,4 @@ install.sh
 uninstall.sh
 install.md
 package.sh
+clipboard_history.pkl
