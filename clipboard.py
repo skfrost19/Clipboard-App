@@ -1,3 +1,4 @@
+from PyQt5 import QtWidgets
 import sys
 import pickle
 from PyQt5.QtWidgets import (
@@ -16,7 +17,7 @@ from PyQt5.QtWidgets import (
     QDesktopWidget,
 )
 from PyQt5.QtGui import QIcon
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import Qt, QSharedMemory, QSystemSemaphore
 
 
 class ClipboardApp(QMainWindow):
@@ -64,7 +65,7 @@ class ClipboardApp(QMainWindow):
         self.setWindowTitle("Clipboard App")
         self.setWindowIcon(QIcon("icon.png"))
 
-        #set at right upper corner
+        # set at right upper corner
         desktop = QDesktopWidget().screenGeometry()
         self.setGeometry(desktop.width() - 600, 0, 600, 400)
         self.setMinimumSize(600, 400)
@@ -254,11 +255,46 @@ class ClipboardApp(QMainWindow):
             self.save_data()
 
 
-if __name__ == "__main__":
-    app = QApplication(sys.argv)
+def launch():
+    app = QtWidgets.QApplication(
+        sys.argv
+    )  # create app instance at top, to able to show QMessageBox is required
+    window_id = "pingidapplication"
+    shared_mem_id = "pingidsharedmem"
+    semaphore = QSystemSemaphore(window_id, 1)
+    semaphore.acquire()  # Raise the semaphore, barring other instances to work with shared memory
+
+    if sys.platform != "win32":
+        # in linux / unix shared memory is not freed when the application terminates abnormally,
+        # so you need to get rid of the garbage
+        nix_fix_shared_mem = QSharedMemory(shared_mem_id)
+        if nix_fix_shared_mem.attach():
+            nix_fix_shared_mem.detach()
+
+    shared_memory = QSharedMemory(shared_mem_id)
+
+    if (
+        shared_memory.attach()
+    ):  # attach a copy of the shared memory, if successful, the application is already running
+        is_running = True
+    else:
+        shared_memory.create(1)  # allocate a shared memory block of 1 byte
+        is_running = False
+
+    semaphore.release()
+
+    if is_running:  # if the application is already running, show the warning message
+        QtWidgets.QMessageBox.warning(
+            None,
+            "Application already running",
+            "One instance of the application is already running.",
+        )
+        return
+
+    # normal process of creating & launching MainWindow
     window = ClipboardApp()
     sys.exit(app.exec_())
 
 
-# using pytinstller
-# pyinstaller --add-data "clear.png:." --add-data "icon.png:." --name "Clipboard App" clipboard.py
+if __name__ == "__main__":
+    launch()
