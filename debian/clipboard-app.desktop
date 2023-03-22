@@ -1,7 +1,0 @@
-[Desktop Entry]
-Type=Application
-Name=Clipboard Manager
-Comment=Clipboard Manager
-Path=/opt/Clipboard-App
-Exec=/opt/Clipboard-App/Clipboard-App
-Icon=clipboard-app.png
