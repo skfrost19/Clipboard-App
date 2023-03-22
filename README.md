@@ -51,3 +51,7 @@ The user can clear the clipboard history by clicking the "Clear Clipboard" butto
 ## License
 
 This project is licensed under the [MIT](LICENSE.txt) License.
+
+## Branch
+
+Switched to Release Branch.
