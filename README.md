@@ -22,7 +22,7 @@
   - Windows: `python clipboard.py`
   - Linux: `python3 clipboard.py`
 
-- Debian package can also be retrieved from the [releases](https://github.com/skfrost19/Clipboard-App/releases/tag/v0.0.1deb) page.
+- Debian package can also be retrieved from the [releases](https://github.com/skfrost19/Clipboard-App/releases/tag/v1.0.0deb) page.
 
 ## Build
 
