@@ -1,4 +1,4 @@
-# Clipboard App - Package Branch
+# Clipboard App - Debian Branch
 
 ## Steps to build a package :-
 
