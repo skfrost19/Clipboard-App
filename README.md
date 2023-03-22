@@ -1,4 +1,4 @@
-# Clipboard App - Release Branch
+# Clipboard App - Package Branch
 
 ## Steps to build a package :-
 
