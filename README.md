@@ -1,57 +1,18 @@
-# Clipboard App
+# Clipboard App - Release Branch
 
-- This is a GUI application built using PyQt5 which keeps track of the user's clipboard history.
-- Build mainly for linux users.
-- The app is designed to run in the background and can be accessed through the system tray icon.
+## Steps to build a package :-
 
-## Requirements
+- [optional] - Create a virtual environment
 
-- Python 3.7 or higher
-- PyQt5
+Necessary library/tools :-
 
-## Installation
+- pip3 install -r requirements.txt
+- pip3 install PyInstaller
+- sudo apt install ruby
+- gem install fpm --user-install (If you see a warning e.g. You don't have /home/martin/.local/share/gem/ruby/2.7.0/bin in your PATH you will need to add that to your path in your .bashrc file. check fpm --version)
 
-- Clone the repository: `git clone https://github.com/skfrost19/Clipboard-App.git`
-- Install the required dependencies:
+`Next, use pyinstaller and fpm to build a deb file (run the following in the terminal, also make sure to grant executables write to sh files.) :-`
 
-  - For Windows: `pip install -r requirements.txt`
-  - For linux: `pip3 install -r requirements.txt`
-
-- Run the application:
-
-  - Windows: `python clipboard.py`
-  - Linux: `python3 clipboard.py`
-
-- Debian package can also be retrieved from the [releases](https://github.com/skfrost19/Clipboard-App/releases/tag/v0.0.1deb) page.
-
-## Build
-
-- To build the application [.deb] for debian based systems, run the following command:
-
-  - clone the repo
-  - use debian folder only
-  - follow the [Instruction](https://github.com/skfrost19/Clipboard-App/tree/master/debian/install.md) in the debian folder.
-
-## Usage
-
-- Once the application is running, it will automatically keep track of the user's clipboard history.
-- To access the application, click on the system tray icon.
-- The clipboard history will be displayed in a table with two columns: "Copied Elements" and "Options".
-- The "Copied Elements" column displays the text that has been copied to the clipboard, and the "Options" column provides options for the user to interact with the clipboard history.
-
-The user can clear the clipboard history by clicking the "Clear Clipboard" button at the bottom of the window. To exit the application, right-click on the system tray icon and select "Exit" from the context menu.
-
-## Features
-
-- Automatic clipboard tracking
-- Display clipboard history in a table.
-- Clear clipboard history
-- Hide the application to the system tray on startup
-
-## License
-
-This project is licensed under the [MIT](LICENSE.txt) License.
-
-## Branch
-
-Switched to Release Branch.
+- pyinstaller Clipboard-App.spec
+- ./package.sh
+- fpm
