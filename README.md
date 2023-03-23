@@ -4,7 +4,7 @@
 
 - [optional] - Create a virtual environment
 
-Necessary library/tools :-
+## Install Necessary library/tools :-
 
 - pip3 install -r requirements.txt
 - pip3 install PyInstaller
