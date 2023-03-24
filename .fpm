@@ -2,5 +2,5 @@
 -s dir
 -t deb
 -n "clipboard-manager"
--v 0.0.1
+-v 1.0.0
 -p clipboard-manager.deb
