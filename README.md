@@ -2,7 +2,7 @@
 
 ## Demo
 
-![Clipboard Manager](clipboard.png)
+![Clipboard Manager](Demo/clipboard.png)
 
 ## Steps to build a package :-
 
