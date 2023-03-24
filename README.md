@@ -4,6 +4,8 @@
 - Build mainly for linux users.
 - The app is designed to run in the background and can be accessed through the system tray icon.
 
+![Clipboard Manager](https://github.com/skfrost19/Clipboard-App/blob/package/Demo/clipboard.png?raw=true)
+
 ## Requirements
 
 - Python 3.7 or higher
