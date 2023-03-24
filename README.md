@@ -26,11 +26,11 @@
 
 ## Build
 
-- To build the application [.deb] for debian based systems, run the following command:
+- To build the application from source, run the following command:
 
   - clone the repo
-  - checkout to the **debian** branch `git checkout debian`
-  - follow the [Instruction](https://github.com/skfrost19/Clipboard-App/blob/debian/README.md) to build the application
+  - checkout to the **package** branch `git checkout package`
+  - follow the [Instruction](https://github.com/skfrost19/Clipboard-App/blob/package/README.md) to build the application
 
 ## Usage
 
