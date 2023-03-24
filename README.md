@@ -22,7 +22,7 @@
 
 ## Build on a rpm based system :-
 
-- Replace the .fpm file's content with the following :-
+- Replace the .fpm file's contents with the following :-
 
 ```
 -C package
@@ -31,6 +31,19 @@
 -n "clipboard-manager"
 -v 1.0.0
 -p clipboard-manager.rpm
+```
+
+- fpm
+
+## Build on arch based system :-
+
+- Replace the .fpm file's contents with the following :-
+```
+-C package
+-s dir
+-t pacman
+-n "clipboard-manager"
+-v 1.0.0
 ```
 
 - fpm
