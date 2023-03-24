@@ -244,6 +244,10 @@ class ClipboardApp(QMainWindow):
             row = self.table.indexAt(button.parent().pos()).row()
             row_text = self.table.item(row, 0).text()
             self.clipboard.setText(row_text)
+            # show a message 
+            QtWidgets.QMessageBox.information(
+                self, "Copied", f"{row_text[:200]}"
+            )
 
     def delete_row(self):
         button = self.sender()
