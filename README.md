@@ -1,5 +1,9 @@
 # Clipboard App - Package branch
 
+## Demo
+
+![Clipboard Manager](clipboard.png)
+
 ## Steps to build a package :-
 
 - [optional] - Create a virtual environment
@@ -38,6 +42,7 @@
 ## Build on arch based system :-
 
 - Replace the .fpm file's contents with the following :-
+
 ```
 -C package
 -s dir
