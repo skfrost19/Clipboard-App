@@ -24,12 +24,17 @@ class ClipboardApp(QMainWindow):
     def __init__(self):
         super().__init__()
 
-        # style the application
+        # style the application and set the background as transparent
         self.setStyleSheet(
             """
             QMainWindow {
-                background-color: "#3d3d3d";
-                color: #f0f0f0;
+                background-color: rgba(0, 0, 0, 0);
+                border: none;
+            }
+            QMainWindow::title {
+                background-color: rgba(0, 0, 0, 0);
+                border: none;
+                font-size: 50px;
             }
             QTableWidget {
                 background-color: #3d3d3d;
@@ -43,9 +48,13 @@ class ClipboardApp(QMainWindow):
                 background-color: #3d3d3d;
             }
             QHeaderView::section {
-                background-color: #3d3d3d;
-                color: #f0f0f0;
+                background-color: #f0f0f0;
+                color: #3d3d3d;
                 border: 1px solid #2d2d2d;
+                height: 25px;
+                font-size: 14px;
+                font-family: "Segoe UI";
+                font-style: normal;
             }
             QPushButton:hover {
                 background-color: #5d5d5d;
@@ -62,7 +71,8 @@ class ClipboardApp(QMainWindow):
         self.setWindowFlags(Qt.WindowCloseButtonHint)
 
         # create the main window
-        self.setWindowTitle("Clipboard App")
+        self.setWindowTitle("Clipboard  Manager")
+        # change font size of Title Bar
         self.setWindowIcon(QIcon("icon.png"))
 
         # set at right upper corner
@@ -75,7 +85,6 @@ class ClipboardApp(QMainWindow):
         self.table = QTableWidget(self)
         self.table.setColumnCount(2)
         self.table.setHorizontalHeaderLabels(["Copied Elements", "Options"])
-        # resize permenently the options column in ratio 90:10
         self.table.horizontalHeader().setSectionResizeMode(
             1, QHeaderView.ResizeToContents
         )
@@ -244,10 +253,8 @@ class ClipboardApp(QMainWindow):
             row = self.table.indexAt(button.parent().pos()).row()
             row_text = self.table.item(row, 0).text()
             self.clipboard.setText(row_text)
-            # show a message 
-            QtWidgets.QMessageBox.information(
-                self, "Copied", f"{row_text[:200]}"
-            )
+            # show a message
+            QtWidgets.QMessageBox.information(self, "Copied", f"{row_text[:200]}")
 
     def delete_row(self):
         button = self.sender()
