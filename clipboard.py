@@ -84,6 +84,16 @@ class ClipboardApp(QMainWindow):
         # create the table to display copied elements
         self.table = QTableWidget(self)
         self.table.setColumnCount(2)
+        
+        # add a search bar to search the clipboard history
+        self.search_bar = QtWidgets.QLineEdit(self)
+        self.search_bar.setPlaceholderText("Search")
+        self.search_bar.textChanged.connect(self.search)
+        
+        # place the search bar at the top of the window
+        self.table.setCellWidget(0, 0, self.search_bar)
+
+
         self.table.setHorizontalHeaderLabels(["Copied Elements", "Options"])
         self.table.horizontalHeader().setSectionResizeMode(
             1, QHeaderView.ResizeToContents
@@ -91,6 +101,7 @@ class ClipboardApp(QMainWindow):
         self.table.horizontalHeader().setSectionResizeMode(0, QHeaderView.Stretch)
         self.setCentralWidget(self.table)
         self.add_clear_button()
+
         # connect to the system clipboard and add a listener for clipboard changes
         self.clipboard = QApplication.clipboard()
         self.clipboard.dataChanged.connect(self.on_clipboard_change)
@@ -126,6 +137,16 @@ class ClipboardApp(QMainWindow):
         # override closeEvent to minimize to system tray and if the user closes the window from the system tray, exit the application
         self.closeEvent = self.on_close
         self.set_tooltip()
+
+    def search(self):
+        # search the clipboard history for the text in the search bar
+        for row in range(self.table.rowCount()):
+            item = self.table.item(row, 0)
+            if self.search_bar.text().lower() in item.text().lower():
+                self.table.setRowHidden(row, False)
+            else:
+                self.table.setRowHidden(row, True)
+        
 
     def set_tooltip(self):
         for row in range(self.table.rowCount()):  # iterate through the rows
