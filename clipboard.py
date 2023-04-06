@@ -210,6 +210,7 @@ class ClipboardApp(QMainWindow):
         if self.isVisible():
             self.hide()
             event.ignore()
+            self.search_bar.setText("")
         else:
             self.save_data()
             event.accept()
